@@ -1,0 +1,9 @@
+free_thresh: 0.25
+image: lev_l_cleaned.pgm
+negate: 0
+occupied_thresh: 0.65
+origin:
+- -9.37
+- -1.26
+- 0
+resolution: 0.05
