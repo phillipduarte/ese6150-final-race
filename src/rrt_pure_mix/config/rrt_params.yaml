@@ -1,0 +1,54 @@
+rrt_node:
+  ros__parameters:
+
+    # ── RRT variant ────────────────────────────────────────────────────────
+    # Set to true to enable RRT* (optimal rewiring). false = basic RRT.
+    use_rrt_star: true
+
+    # ── Tree growth ────────────────────────────────────────────────────────
+    # Maximum distance the tree expands toward a sampled point (meters)
+    max_expansion_dist: 0.5
+
+    # Number of tree expansion iterations per pose update
+    max_iterations: 500
+
+    # ── Goal selection ─────────────────────────────────────────────────────
+    # Distance ahead of the car to look for the goal waypoint (meters)
+    # Smaller = turns earlier; larger = smoother but turns later
+    lookahead_dist: 2.0
+
+    # Distance threshold to declare a tree node as reaching the goal (meters)
+    goal_threshold: 0.3
+
+    # Probability [0.0, 1.0] of sampling directly at the goal (goal biasing)
+    goal_bias_prob: 0.25
+
+    # Absolute path to the waypoints CSV file (columns: x, y, yaw, v)
+    # Leave empty ("") if not using waypoints — car will aim straight ahead.
+    waypoints_file: "/home/nvidia/f1tenth_ws/src/lab-6-motion-planning-team11-main/waypoints/tuned_v3.csv"
+    #waypoints_file: ""
+    # Max segment length shortcut_path is allowed to jump (meters)
+    # Must stay below corner radius — prevents straight-line shortcuts across
+    # turns where the blocking wall has scrolled out of the local occupancy grid
+    max_shortcut_dist: 0.3
+
+    # ── Speed scaling ──────────────────────────────────────────────────────
+    # Multiplier applied to each waypoint's CSV speed when no obstacle is
+    # detected in the forward corridor. Set < 1.0 to run below raceline speed.
+    waypoint_speed_scale: 0.85
+
+    # ── RRT* only ──────────────────────────────────────────────────────────
+    # Radius around a new node to search for neighbors to rewire (meters)
+    search_radius: 1.0
+
+    # ── Occupancy grid ─────────────────────────────────────────────────────
+    # Number of cells to inflate around each lidar hit (obstacle padding)
+    inflation_radius: 1
+
+    # ── Pure Pursuit path execution ────────────────────────────────────────
+    # How far along the found path to look for the steering target (meters)
+    # Smaller = reacts to corners earlier; larger = smoother but turns later
+    pursuit_lookahead: 0.9
+
+    # Maximum driving speed (m/s). Reduced automatically on sharp turns.
+    max_speed: 3.7
